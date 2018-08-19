@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @link 		https://goo.gl/wGXHO9
  * @copyright	Copyright (c) 2018, Kader Bouyakoub (https://goo.gl/wGXHO9)
  * @since 		1.0.0
- * @version 	2.1.0
+ * @version 	2.1.6
  */
 class KB_Controller extends CI_Controller {
 
@@ -88,9 +88,6 @@ class KB_Controller extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-
-		// Load application main library.
-		$this->load->driver('kbcore');
 
 		/**
 		 * We make sure to always store $_POST data upon submission. This
@@ -239,14 +236,14 @@ class KB_Controller extends CI_Controller {
 				// Make sure to use _query_validate() method on admin.
 				if (true !== $this->router->is_admin())
 				{
-					add_script('jquery-validate', get_common_url('js/jquery.validate'));
+					add_script('jquery-validate', get_common_url('js/jquery.validate.min.js'));
 
 					// Different language?
 					if ('en' !== ($code = $this->lang->lang('code')))
 					{
 						add_script(
 							'jquery-validate-'.$code,
-							get_common_url('js/jquery-validate/'.$code)
+							get_common_url('js/jquery-validate/'.$code.'.min.js')
 						);
 					}
 				}
